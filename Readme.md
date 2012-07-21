@@ -1,4 +1,4 @@
-## RDP Manager
+## RDP Connection Manager
 This is just a simple app to manage a small set of Remote Desktop Session files(.rdp files).
 The files will be stored in /Users/&lt;username&gt;/Desktop/rdp.
 
