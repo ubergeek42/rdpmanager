@@ -9,3 +9,5 @@ This program by default launches the rdp files using the open command.  You shou
 your rdp files are associated to be opened with the the official Microsoft Remote Desktop client.
 
 Created in 1 day from scratch during a hackathon.
+
+![Screenshot of app](https://github.com/ubergeek42/rdpmanager/raw/master/screenshot.png)
