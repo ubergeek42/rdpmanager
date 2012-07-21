@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		958E060115BB282E005A35E6 /* RdpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 958E060015BB282E005A35E6 /* RdpCell.m */; };
+		958E060515BB40F1005A35E6 /* RDPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 958E060415BB40F1005A35E6 /* RDPSession.m */; };
 		95EF941415BB0C2F008BEF9E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EF941315BB0C2F008BEF9E /* Cocoa.framework */; };
 		95EF941E15BB0C2F008BEF9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95EF941C15BB0C2F008BEF9E /* InfoPlist.strings */; };
 		95EF942015BB0C2F008BEF9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EF941F15BB0C2F008BEF9E /* main.m */; };
@@ -16,17 +18,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		958E05FF15BB282E005A35E6 /* RdpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RdpCell.h; sourceTree = "<group>"; };
+		958E060015BB282E005A35E6 /* RdpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RdpCell.m; sourceTree = "<group>"; };
+		958E060315BB40F1005A35E6 /* RDPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDPSession.h; sourceTree = "<group>"; };
+		958E060415BB40F1005A35E6 /* RDPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDPSession.m; sourceTree = "<group>"; };
 		95EF940F15BB0C2F008BEF9E /* rdpmanager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rdpmanager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EF941315BB0C2F008BEF9E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		95EF941615BB0C2F008BEF9E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		95EF941715BB0C2F008BEF9E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		95EF941815BB0C2F008BEF9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		95EF941B15BB0C2F008BEF9E /* rdpmanager-Info.plist */ = {isa = PBXFileReference; path = "rdpmanager-Info.plist"; sourceTree = "<group>"; };
+		95EF941B15BB0C2F008BEF9E /* rdpmanager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "rdpmanager-Info.plist"; sourceTree = "<group>"; };
 		95EF941D15BB0C2F008BEF9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		95EF941F15BB0C2F008BEF9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		95EF942115BB0C2F008BEF9E /* rdpmanager-Prefix.pch */ = {isa = PBXFileReference; path = "rdpmanager-Prefix.pch"; sourceTree = "<group>"; };
+		95EF942115BB0C2F008BEF9E /* rdpmanager-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "rdpmanager-Prefix.pch"; sourceTree = "<group>"; };
 		95EF942315BB0C2F008BEF9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		95EF942515BB0C2F008BEF9E /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		95EF942515BB0C2F008BEF9E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95EF942615BB0C2F008BEF9E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		95EF942915BB0C30008BEF9E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +52,10 @@
 		95EF940415BB0C2F008BEF9E = {
 			isa = PBXGroup;
 			children = (
+				958E060315BB40F1005A35E6 /* RDPSession.h */,
+				958E060415BB40F1005A35E6 /* RDPSession.m */,
+				958E05FF15BB282E005A35E6 /* RdpCell.h */,
+				958E060015BB282E005A35E6 /* RdpCell.m */,
 				95EF941915BB0C2F008BEF9E /* rdpmanager */,
 				95EF941215BB0C2F008BEF9E /* Frameworks */,
 				95EF941015BB0C2F008BEF9E /* Products */,
@@ -167,6 +177,8 @@
 			files = (
 				95EF942015BB0C2F008BEF9E /* main.m in Sources */,
 				95EF942715BB0C2F008BEF9E /* AppDelegate.m in Sources */,
+				958E060115BB282E005A35E6 /* RdpCell.m in Sources */,
+				958E060515BB40F1005A35E6 /* RDPSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +300,7 @@
 				95EF942F15BB0C30008BEF9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

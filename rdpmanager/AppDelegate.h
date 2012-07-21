@@ -7,9 +7,20 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "RdpCell.h"
+#import "RDPSession.h"
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate> {
+    IBOutlet NSTableView *rdpList;
+    
+    IBOutlet NSTextField *hostnameText;
+    IBOutlet NSTextField *usernameText;
+    IBOutlet NSTextField *domainText;
+}
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-
+@property(nonatomic, retain) IBOutlet NSTableView *sessionList;
 @property (assign) IBOutlet NSWindow *window;
+
+-(IBAction)launchSession:(id)pID;
+- (void)doubleClick:(id)nid;
 
 @end
