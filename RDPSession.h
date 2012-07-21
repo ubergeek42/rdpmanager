@@ -13,10 +13,14 @@
     NSString *username;
     NSString *domain;
     NSString *name;
+    int width;
+    int height;
 }
 @property (retain) NSString *name;
 @property (retain) NSString *hostname;
 @property (retain) NSString *username;
 @property (retain) NSString *domain;
+@property int width;
+@property int height;
 
 @end

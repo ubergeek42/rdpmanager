@@ -20,19 +20,24 @@ const int rdpBPP = 24;
 const int rdpDisableWallpaper = 1;
 
 NSString *rdpDir;
+NSRegularExpression *resolutionRegex;
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    resolutionRegex = [[NSRegularExpression alloc] initWithPattern:@"(.+)x(.+)" options:0 error:nil];
     NSRegularExpression *hostnameRegex = [[NSRegularExpression alloc] initWithPattern:@"full address:s:(.+)" options:0 error:nil];
     NSRegularExpression *usernameRegex = [[NSRegularExpression alloc] initWithPattern:@"username:s:(.+)" options:0 error:nil];
     NSRegularExpression *domainRegex = [[NSRegularExpression alloc] initWithPattern:@"domain:s:(.+)" options:0 error:nil];
+    NSRegularExpression *widthRegex = [[NSRegularExpression alloc] initWithPattern:@"desktopwidth:i:(.+)" options:0 error:nil];
+    NSRegularExpression *heightRegex = [[NSRegularExpression alloc] initWithPattern:@"desktopheight:i:(.+)" options:0 error:nil];
 
     rdpSessions = [[NSMutableArray alloc] init];
 
     
     NSMutableString *defaultString = [[NSMutableString alloc] init];
-    [defaultString appendFormat:@"desktopwidth:i:%i\n",rdpWidth];
-    [defaultString appendFormat:@"desktopheight:i:%i\n",rdpHeight];
+    //[defaultString appendFormat:@"desktopwidth:i:%i\n",rdpWidth];
+    //[defaultString appendFormat:@"desktopheight:i:%i\n",rdpHeight];
     [defaultString appendFormat:@"session bpp:i:%i\n",rdpBPP];
     [defaultString appendFormat:@"disable wallpaper:i:%i\n",rdpDisableWallpaper];
     rdpDefaults = [[NSString alloc] initWithString:defaultString];
@@ -55,16 +60,27 @@ NSString *rdpDir;
         NSTextCheckingResult *hostnameMatch = [hostnameRegex firstMatchInString:contents options:0 range:NSMakeRange(0, [contents length])];
         NSTextCheckingResult *usernameMatch = [usernameRegex firstMatchInString:contents options:0 range:NSMakeRange(0, [contents length])];
         NSTextCheckingResult *domainMatch = [domainRegex firstMatchInString:contents options:0 range:NSMakeRange(0, [contents length])];
+        
         if (hostnameMatch == nil || usernameMatch == nil || domainMatch == nil) {
             NSLog(@"Error parsing file");
         } else {
-            
-            
             RDPSession *session = [[RDPSession alloc] init];
             session.name = [file substringWithRange:NSMakeRange(0, [file length]-4)];
             session.hostname = [contents substringWithRange:[hostnameMatch rangeAtIndex:1]];
             session.username = [contents substringWithRange:[usernameMatch rangeAtIndex:1]];
             session.domain = [contents substringWithRange:[domainMatch rangeAtIndex:1]];
+            
+            NSTextCheckingResult *widthMatch = [widthRegex firstMatchInString:contents options:0 range:NSMakeRange(0, [contents length])];
+            NSTextCheckingResult *heightMatch = [heightRegex firstMatchInString:contents options:0 range:NSMakeRange(0, [contents length])];
+            if (widthMatch != nil && heightMatch !=nil) {
+                session.width = [[contents substringWithRange:[widthMatch rangeAtIndex:1]] intValue];
+                session.height = [[contents substringWithRange:[heightMatch rangeAtIndex:1]] intValue];
+            } else {
+                // set a default resolution(1440x900)
+                session.width = rdpWidth;
+                session.height = rdpHeight;
+            }
+            
             [rdpSessions addObject:session];
             
             NSLog(@"Session name: %@",session.name);
@@ -77,6 +93,10 @@ NSString *rdpDir;
     NSLog(@"%lu", [rdpSessions count]);
     [sessionList reloadData];
     [sessionList setDoubleAction:NSSelectorFromString(@"doubleClick:")];
+    
+    NSArray *resolutions = [[NSArray alloc] initWithObjects:@"600x480",@"640x480",@"800x600",@"1024x640",@"1024x768",@"1280x800",@"1280x1024",@"1440x900", @"1600x1200",@"1680x1050",@"1920x1080",@"1920x1200", @"2400x1500",@"2560x1600", nil];
+    [resolutionSelector removeAllItems];
+    [resolutionSelector addItemsWithTitles:resolutions];
 }
 
 -(IBAction)newSession:(id)sender {
@@ -85,6 +105,8 @@ NSString *rdpDir;
     session.hostname = @"";
     session.username = @"";
     session.domain = @"";
+    session.width = rdpWidth;
+    session.height = rdpHeight;
     [rdpSessions addObject:session];
     [sessionList reloadData];
     
@@ -139,10 +161,18 @@ NSString *rdpDir;
     session.username = [usernameText stringValue];
     session.domain = [domainText stringValue];
     
+    NSString *resolutionStr = [resolutionSelector titleOfSelectedItem];
+    NSTextCheckingResult *res = [resolutionRegex firstMatchInString:resolutionStr options:0 range:NSMakeRange(0,[resolutionStr length])];
+    session.width = [[resolutionStr substringWithRange:[res rangeAtIndex:1]] intValue];
+    session.height = [[resolutionStr substringWithRange:[res rangeAtIndex:2]] intValue];
+    
+    
     NSMutableString *rdpStr = [[NSMutableString alloc] init];
     [rdpStr appendFormat:@"full address:s:%@\n",session.hostname];
     [rdpStr appendFormat:@"username:s:%@\n",session.username];
     [rdpStr appendFormat:@"domain:s:%@\n",session.domain];
+    [rdpStr appendFormat:@"desktopwidth:i:%i\n",session.width];
+    [rdpStr appendFormat:@"desktopheight:i:%i\n",session.height];
     [rdpStr appendFormat:@"%@",rdpDefaults];
 
     // Write the settings to a file
@@ -162,6 +192,15 @@ NSString *rdpDir;
     [rdpStr appendFormat:@"full address:s:%@\n",[hostnameText stringValue]];
     [rdpStr appendFormat:@"username:s:%@\n",[usernameText stringValue]];
     [rdpStr appendFormat:@"domain:s:%@\n",[domainText stringValue]];
+    
+    
+    NSString *resolutionStr = [resolutionSelector titleOfSelectedItem];
+    NSTextCheckingResult *res = [resolutionRegex firstMatchInString:resolutionStr options:0 range:NSMakeRange(0,[resolutionStr length])];
+    int width = [[resolutionStr substringWithRange:[res rangeAtIndex:1]] intValue];
+    int height = [[resolutionStr substringWithRange:[res rangeAtIndex:2]] intValue];
+    
+    [rdpStr appendFormat:@"desktopwidth:i:%i\n",width];
+    [rdpStr appendFormat:@"desktopheight:i:%i\n",height];
     [rdpStr appendFormat:@"%@",rdpDefaults];
     NSLog(@"RDP File:\n\n%@",rdpStr);
     
@@ -190,6 +229,8 @@ NSString *rdpDir;
     [usernameText setStringValue:session.username];
     [domainText setStringValue:session.domain];
     [sessionnameText setStringValue:session.name];
+    
+    [resolutionSelector selectItemWithTitle:[NSString stringWithFormat:@"%dx%d", session.width, session.height]];
     
 }
 -(NSInteger) numberOfRowsInTableView:(NSTableView *)tableView

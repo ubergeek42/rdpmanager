@@ -16,6 +16,8 @@
     IBOutlet NSTextField *hostnameText;
     IBOutlet NSTextField *usernameText;
     IBOutlet NSTextField *domainText;
+    
+    IBOutlet NSPopUpButton *resolutionSelector;
 }
 
 @property(nonatomic, retain) IBOutlet NSTableView *sessionList;

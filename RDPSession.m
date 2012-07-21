@@ -13,4 +13,6 @@
 @synthesize hostname;
 @synthesize domain;
 @synthesize name;
+@synthesize width;
+@synthesize height;
 @end
