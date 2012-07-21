@@ -12,6 +12,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate> {
     IBOutlet NSTableView *rdpList;
     
+    IBOutlet NSTextField *sessionnameText;
     IBOutlet NSTextField *hostnameText;
     IBOutlet NSTextField *usernameText;
     IBOutlet NSTextField *domainText;
@@ -20,7 +21,10 @@
 @property(nonatomic, retain) IBOutlet NSTableView *sessionList;
 @property (assign) IBOutlet NSWindow *window;
 
--(IBAction)launchSession:(id)pID;
+-(IBAction)newSession:(id)sender;
+-(IBAction)deleteSession:(id)sender;
+-(IBAction)launchSession:(id)sender;
+-(IBAction)saveSession:(id)sender;
 - (void)doubleClick:(id)nid;
 
 @end

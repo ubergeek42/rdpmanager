@@ -19,6 +19,8 @@ const int rdpHeight = 900;
 const int rdpBPP = 24;
 const int rdpDisableWallpaper = 1;
 
+NSString *rdpDir;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSRegularExpression *hostnameRegex = [[NSRegularExpression alloc] initWithPattern:@"full address:s:(.+)" options:0 error:nil];
@@ -28,8 +30,16 @@ const int rdpDisableWallpaper = 1;
     rdpSessions = [[NSMutableArray alloc] init];
 
     
-    NSMutableString *rdpDir = [[NSMutableString alloc] init];
-    [rdpDir appendFormat:@"%@/%@",NSHomeDirectory(),@"Desktop/rdp"];
+    NSMutableString *defaultString = [[NSMutableString alloc] init];
+    [defaultString appendFormat:@"desktopwidth:i:%i\n",rdpWidth];
+    [defaultString appendFormat:@"desktopheight:i:%i\n",rdpHeight];
+    [defaultString appendFormat:@"session bpp:i:%i\n",rdpBPP];
+    [defaultString appendFormat:@"disable wallpaper:i:%i\n",rdpDisableWallpaper];
+    rdpDefaults = [[NSString alloc] initWithString:defaultString];
+    
+    NSMutableString *temp = [[NSMutableString alloc] init];
+    [temp appendFormat:@"%@/%@",NSHomeDirectory(),@"Desktop/rdp"];
+    rdpDir = [[NSString alloc] initWithString:temp];
 
     // Insert code here to initialize your application
     NSArray *dirFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rdpDir error:nil];
@@ -69,15 +79,85 @@ const int rdpDisableWallpaper = 1;
     [sessionList setDoubleAction:NSSelectorFromString(@"doubleClick:")];
 }
 
--(IBAction)launchSession:(id)pID
-{
-    NSMutableString *defaultString = [[NSMutableString alloc] init];
-    [defaultString appendFormat:@"desktopwidth:i:%i\n",rdpWidth];
-    [defaultString appendFormat:@"desktopheight:i:%i\n",rdpHeight];
-    [defaultString appendFormat:@"session bpp:i:%i\n",rdpBPP];
-    [defaultString appendFormat:@"disable wallpaper:i:%i\n",rdpDisableWallpaper];
-    rdpDefaults = [[NSString alloc] initWithString:defaultString];
+-(IBAction)newSession:(id)sender {
+    RDPSession *session = [[RDPSession alloc] init];
+    session.name = @"New Session";
+    session.hostname = @"";
+    session.username = @"";
+    session.domain = @"";
+    [rdpSessions addObject:session];
+    [sessionList reloadData];
     
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[rdpSessions count]-1];
+    [sessionList selectRowIndexes:indexSet byExtendingSelection:NO];
+
+}
+
+-(IBAction)deleteSession:(id)sender {
+    int selectedIndex = [sessionList selectedRow];
+    if (selectedIndex > [rdpSessions count] || selectedIndex <0) return;
+    
+    RDPSession *session = [rdpSessions objectAtIndex:selectedIndex];
+    NSString *filePath = [[NSString alloc] initWithFormat:@"%@/%@.rdp",rdpDir,session.name];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        // delete the file
+        NSLog(@"Deleting file: %@", filePath);
+        NSError *error;
+        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+        if (!success) {
+            NSLog(@"Error deleting file %@: %@\n",filePath, [error localizedFailureReason]);
+        }
+    }
+    [rdpSessions removeObject:session];
+    [sessionList reloadData];
+    
+    if (selectedIndex >= [rdpSessions count]) {
+        selectedIndex = [rdpSessions count] -1;
+    }
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:selectedIndex];
+    [sessionList selectRowIndexes:indexSet byExtendingSelection:NO];
+}
+
+-(IBAction)saveSession:(id)sender {
+    if ([sessionList selectedRow] > [rdpSessions count] || [sessionList selectedRow] <0) return;
+    
+    RDPSession *session = [rdpSessions objectAtIndex:[sessionList selectedRow]];
+
+    // Delete the file before we write a new one
+    NSString *filePath = [[NSString alloc] initWithFormat:@"%@/%@.rdp",rdpDir,session.name];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSError *error;
+        BOOL success = [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+        if (!success) {
+            NSLog(@"Error deleting file %@: %@\n",filePath, [error localizedFailureReason]);
+        }
+    }
+    
+    
+    session.name = [sessionnameText stringValue];
+    session.hostname = [hostnameText stringValue];
+    session.username = [usernameText stringValue];
+    session.domain = [domainText stringValue];
+    
+    NSMutableString *rdpStr = [[NSMutableString alloc] init];
+    [rdpStr appendFormat:@"full address:s:%@\n",session.hostname];
+    [rdpStr appendFormat:@"username:s:%@\n",session.username];
+    [rdpStr appendFormat:@"domain:s:%@\n",session.domain];
+    [rdpStr appendFormat:@"%@",rdpDefaults];
+
+    // Write the settings to a file
+    NSString *rdpFilename = [[NSString alloc] initWithFormat:@"%@/%@.rdp",rdpDir,session.name];
+    NSLog(@"%@",rdpFilename);
+    NSError *error;
+    BOOL success = [rdpStr writeToFile:rdpFilename atomically:TRUE encoding:NSUTF8StringEncoding error:&error];
+    if (!success) {
+        NSLog(@"Error writing file %@: %@\n",rdpFilename, [error localizedFailureReason]);
+    }
+    
+    [sessionList reloadData];    
+}
+-(IBAction)launchSession:(id)sender
+{
     NSMutableString *rdpStr = [[NSMutableString alloc] init];
     [rdpStr appendFormat:@"full address:s:%@\n",[hostnameText stringValue]];
     [rdpStr appendFormat:@"username:s:%@\n",[usernameText stringValue]];
@@ -85,10 +165,10 @@ const int rdpDisableWallpaper = 1;
     [rdpStr appendFormat:@"%@",rdpDefaults];
     NSLog(@"RDP File:\n\n%@",rdpStr);
     
-    NSString *rdpFilename = @"/Users/ubergeek/Desktop/temp.rdp";
+    NSString *rdpFilename = @"/tmp/temp.rdp";
     // Write the settings to a file
     NSError *error;
-    BOOL success = [rdpStr writeToFile:rdpFilename atomically:TRUE encoding:NSUnicodeStringEncoding error:&error];
+    BOOL success = [rdpStr writeToFile:rdpFilename atomically:TRUE encoding:NSUTF8StringEncoding error:&error];
     if (!success) {
         NSLog(@"Error writing file %@: %@\n",rdpFilename, [error localizedFailureReason]);
     } else {
@@ -109,6 +189,7 @@ const int rdpDisableWallpaper = 1;
     [hostnameText setStringValue:session.hostname];
     [usernameText setStringValue:session.username];
     [domainText setStringValue:session.domain];
+    [sessionnameText setStringValue:session.name];
     
 }
 -(NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
