@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95EF941415BB0C2F008BEF9E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EF941315BB0C2F008BEF9E /* Cocoa.framework */; };
+		95EF941E15BB0C2F008BEF9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95EF941C15BB0C2F008BEF9E /* InfoPlist.strings */; };
+		95EF942015BB0C2F008BEF9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EF941F15BB0C2F008BEF9E /* main.m */; };
+		95EF942415BB0C2F008BEF9E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 95EF942215BB0C2F008BEF9E /* Credits.rtf */; };
+		95EF942715BB0C2F008BEF9E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95EF942615BB0C2F008BEF9E /* AppDelegate.m */; };
+		95EF942A15BB0C30008BEF9E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95EF942815BB0C30008BEF9E /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		95EF940F15BB0C2F008BEF9E /* rdpmanager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rdpmanager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95EF941315BB0C2F008BEF9E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		95EF941615BB0C2F008BEF9E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		95EF941715BB0C2F008BEF9E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		95EF941815BB0C2F008BEF9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		95EF941B15BB0C2F008BEF9E /* rdpmanager-Info.plist */ = {isa = PBXFileReference; path = "rdpmanager-Info.plist"; sourceTree = "<group>"; };
+		95EF941D15BB0C2F008BEF9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		95EF941F15BB0C2F008BEF9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95EF942115BB0C2F008BEF9E /* rdpmanager-Prefix.pch */ = {isa = PBXFileReference; path = "rdpmanager-Prefix.pch"; sourceTree = "<group>"; };
+		95EF942315BB0C2F008BEF9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		95EF942515BB0C2F008BEF9E /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		95EF942615BB0C2F008BEF9E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		95EF942915BB0C30008BEF9E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		95EF940C15BB0C2F008BEF9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95EF941415BB0C2F008BEF9E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95EF940415BB0C2F008BEF9E = {
+			isa = PBXGroup;
+			children = (
+				95EF941915BB0C2F008BEF9E /* rdpmanager */,
+				95EF941215BB0C2F008BEF9E /* Frameworks */,
+				95EF941015BB0C2F008BEF9E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		95EF941015BB0C2F008BEF9E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95EF940F15BB0C2F008BEF9E /* rdpmanager.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95EF941215BB0C2F008BEF9E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95EF941315BB0C2F008BEF9E /* Cocoa.framework */,
+				95EF941515BB0C2F008BEF9E /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95EF941515BB0C2F008BEF9E /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95EF941615BB0C2F008BEF9E /* AppKit.framework */,
+				95EF941715BB0C2F008BEF9E /* CoreData.framework */,
+				95EF941815BB0C2F008BEF9E /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		95EF941915BB0C2F008BEF9E /* rdpmanager */ = {
+			isa = PBXGroup;
+			children = (
+				95EF942515BB0C2F008BEF9E /* AppDelegate.h */,
+				95EF942615BB0C2F008BEF9E /* AppDelegate.m */,
+				95EF942815BB0C30008BEF9E /* MainMenu.xib */,
+				95EF941A15BB0C2F008BEF9E /* Supporting Files */,
+			);
+			path = rdpmanager;
+			sourceTree = "<group>";
+		};
+		95EF941A15BB0C2F008BEF9E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95EF941B15BB0C2F008BEF9E /* rdpmanager-Info.plist */,
+				95EF941C15BB0C2F008BEF9E /* InfoPlist.strings */,
+				95EF941F15BB0C2F008BEF9E /* main.m */,
+				95EF942115BB0C2F008BEF9E /* rdpmanager-Prefix.pch */,
+				95EF942215BB0C2F008BEF9E /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		95EF940E15BB0C2F008BEF9E /* rdpmanager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95EF942D15BB0C30008BEF9E /* Build configuration list for PBXNativeTarget "rdpmanager" */;
+			buildPhases = (
+				95EF940B15BB0C2F008BEF9E /* Sources */,
+				95EF940C15BB0C2F008BEF9E /* Frameworks */,
+				95EF940D15BB0C2F008BEF9E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rdpmanager;
+			productName = rdpmanager;
+			productReference = 95EF940F15BB0C2F008BEF9E /* rdpmanager.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95EF940615BB0C2F008BEF9E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 95EF940915BB0C2F008BEF9E /* Build configuration list for PBXProject "rdpmanager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 95EF940415BB0C2F008BEF9E;
+			productRefGroup = 95EF941015BB0C2F008BEF9E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95EF940E15BB0C2F008BEF9E /* rdpmanager */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95EF940D15BB0C2F008BEF9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95EF941E15BB0C2F008BEF9E /* InfoPlist.strings in Resources */,
+				95EF942415BB0C2F008BEF9E /* Credits.rtf in Resources */,
+				95EF942A15BB0C30008BEF9E /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95EF940B15BB0C2F008BEF9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95EF942015BB0C2F008BEF9E /* main.m in Sources */,
+				95EF942715BB0C2F008BEF9E /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		95EF941C15BB0C2F008BEF9E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95EF941D15BB0C2F008BEF9E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		95EF942215BB0C2F008BEF9E /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95EF942315BB0C2F008BEF9E /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		95EF942815BB0C30008BEF9E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95EF942915BB0C30008BEF9E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		95EF942B15BB0C30008BEF9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		95EF942C15BB0C30008BEF9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		95EF942E15BB0C30008BEF9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rdpmanager/rdpmanager-Prefix.pch";
+				INFOPLIST_FILE = "rdpmanager/rdpmanager-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		95EF942F15BB0C30008BEF9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "rdpmanager/rdpmanager-Prefix.pch";
+				INFOPLIST_FILE = "rdpmanager/rdpmanager-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		95EF940915BB0C2F008BEF9E /* Build configuration list for PBXProject "rdpmanager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95EF942B15BB0C30008BEF9E /* Debug */,
+				95EF942C15BB0C30008BEF9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95EF942D15BB0C30008BEF9E /* Build configuration list for PBXNativeTarget "rdpmanager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95EF942E15BB0C30008BEF9E /* Debug */,
+				95EF942F15BB0C30008BEF9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 95EF940615BB0C2F008BEF9E /* Project object */;
+}
